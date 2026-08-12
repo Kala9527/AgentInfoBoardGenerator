@@ -1,19 +1,24 @@
-# NewsForge Agent
+# NewsForge Agent 新闻生成智能体
 
-> A compact LangChain experiment for turning a user brief into news-search keywords and downstream article workflow data.
+> 一个基于 LangChain 的新闻选题搜索关键词生成与文章工作流实验项目。
 
-NewsForge Agent is the cleaned-up public name for this repository. It focuses on a small but useful AI workflow: load environment configuration, call a Zhipu-compatible OpenAI endpoint through LangChain, and parse structured model output for search and writing agents.
+[English README](./README.en.md)
 
-## Features
+NewsForge Agent 是 `jbsc` 仓库整理后的公开项目名。项目聚焦一个轻量但实用的 AI 工作流：读取环境配置，通过 OpenAI 兼容接口调用智谱模型，并解析模型输出的结构化 JSON，为后续搜索、提纲和文章生成智能体提供基础。
 
-- Environment-based API configuration
-- LangChain prompt chain for search keyword generation
-- JSON code-block parser utility
-- Starter structure for search, outline, and article generation agents
+## 项目亮点
 
-## Quick Start
+- 使用环境变量管理 API Key，避免密钥进入仓库
+- 基于 LangChain 的搜索关键词生成链
+- 提供 JSON 代码块解析工具
+- 预留搜索、提纲、正文生成等智能体工作流结构
+- 已清理 `.env`、`.idea`、本地缓存和无效杂项文件
 
-Use Python 3.10+.
+## 快速开始
+
+请使用 Python 3.10 或更高版本。
+
+Windows:
 
 ```bash
 python -m venv .venv
@@ -22,33 +27,34 @@ pip install -r requirements.txt
 copy .env.example .env
 ```
 
-Edit `.env` and set your real API keys.
+编辑 `.env`，填入自己的 API Key，然后运行：
 
 ```bash
 python -m agents.search_agent
 ```
 
-On macOS or Linux:
+macOS / Linux:
 
 ```bash
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 cp .env.example .env
+python -m agents.search_agent
 ```
 
-## Configuration
+## 配置项
 
 ```text
-ZHIPU_API_KEY   Zhipu API key
-SERPER_API_KEY  Optional search provider key
-SEARCH_K        Search result count, default 5
-ENV             Environment suffix for .env.{ENV}
+ZHIPU_API_KEY   智谱开放平台 API Key
+SERPER_API_KEY  可选，搜索服务 API Key
+SEARCH_K        搜索结果数量，默认 5
+ENV             环境后缀，例如 development
 ```
 
-Secrets are intentionally excluded from Git. If an API key was committed before this cleanup, rotate it in the provider dashboard.
+密钥文件不会提交到 Git。若历史中曾经提交过真实 API Key，请在服务商后台重置该 Key。
 
-## Project Structure
+## 项目结构
 
 ```text
 newsforge-agent/
@@ -63,17 +69,25 @@ newsforge-agent/
 `-- .env.example
 ```
 
-## Naming
+## 命名建议
 
-The repository can stay as `jbsc`, but the public project name is now **NewsForge Agent**. Rename candidates:
+仓库名可以继续保留为 `jbsc`，但项目展示名已经整理为 **NewsForge Agent / 新闻生成智能体**。如果后续想重命名 GitHub 仓库，可以考虑：
 
 - `newsforge-agent`
 - `langchain-news-workflow`
 - `ai-news-search-agent`
 
-## Dependency Policy
+## 依赖管理说明
 
-No virtual environments, IDE settings, local `.env` files, generated output, or cache directories should be committed. Recreate dependencies with:
+以下内容不会提交到仓库：
+
+- `.env`、`.env.*`
+- `.venv/`、`venv/`
+- `.idea/`
+- `__pycache__/`
+- `output/`、`logs/`
+
+如需恢复依赖，执行：
 
 ```bash
 pip install -r requirements.txt
