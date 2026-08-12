@@ -1,19 +1,24 @@
-# NewsForge Agent
+# Agent Info Board Generator
 
-> A compact LangChain experiment for turning a user brief into news-search keywords and downstream article workflow data.
+> A multi-agent project for information organization and bulletin-board generation.
 
-NewsForge Agent is the cleaned-up public name for this repository. It focuses on a small but useful AI workflow: load environment configuration, call a Zhipu-compatible OpenAI endpoint through LangChain, and parse structured model output for search and writing agents.
+Agent Info Board Generator is a lightweight AI workflow project built around information collection, content organization, and board-style presentation. The current code provides a LangChain-based search keyword generation flow: it loads environment configuration, calls an OpenAI-compatible model endpoint, and parses structured JSON returned by the model.
+
+The name is more formal than the original `jbsc` and describes the project goal directly: coordinate multiple agents to turn a user request into organized, readable, and display-ready information boards.
 
 ## Features
 
-- Environment-based API configuration
-- LangChain prompt chain for search keyword generation
-- JSON code-block parser utility
-- Starter structure for search, outline, and article generation agents
+- Environment-based API key management.
+- LangChain prompt chain for search keyword generation.
+- Utility for parsing fenced JSON code blocks from model responses.
+- Starter structure for search, outline, article/content, and board rendering agents.
+- A practical foundation for a full flow: topic input -> information gathering -> content organization -> web board generation.
 
 ## Quick Start
 
 Use Python 3.10+.
+
+Windows:
 
 ```bash
 python -m venv .venv
@@ -22,19 +27,20 @@ pip install -r requirements.txt
 copy .env.example .env
 ```
 
-Edit `.env` and set your real API keys.
+Edit `.env` and set your real API keys, then run:
 
 ```bash
 python -m agents.search_agent
 ```
 
-On macOS or Linux:
+macOS / Linux:
 
 ```bash
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 cp .env.example .env
+python -m agents.search_agent
 ```
 
 ## Configuration
@@ -43,15 +49,15 @@ cp .env.example .env
 ZHIPU_API_KEY   Zhipu API key
 SERPER_API_KEY  Optional search provider key
 SEARCH_K        Search result count, default 5
-ENV             Environment suffix for .env.{ENV}
+ENV             Environment suffix, for example development
 ```
 
-Secrets are intentionally excluded from Git. If an API key was committed before this cleanup, rotate it in the provider dashboard.
+Secrets are intentionally excluded from Git. If a real API key was ever committed, rotate it in the provider dashboard.
 
 ## Project Structure
 
 ```text
-newsforge-agent/
+agent-info-board-generator/
 |-- agents/
 |   `-- search_agent.py
 |-- config/
@@ -63,13 +69,13 @@ newsforge-agent/
 `-- .env.example
 ```
 
-## Naming
+## Roadmap Ideas
 
-The repository can stay as `jbsc`, but the public project name is now **NewsForge Agent**. Rename candidates:
-
-- `newsforge-agent`
-- `langchain-news-workflow`
-- `ai-news-search-agent`
+- Add a real search agent with Serper, Bing, Tavily, or a custom search provider.
+- Add an outline agent that turns search results into a board structure.
+- Add a writer agent for presentation-ready sections.
+- Add a frontend page that renders generated content into a shareable web board.
+- Add export support for HTML, Markdown, images, or PDF.
 
 ## Dependency Policy
 
@@ -78,3 +84,7 @@ No virtual environments, IDE settings, local `.env` files, generated output, or 
 ```bash
 pip install -r requirements.txt
 ```
+
+## Thanks
+
+Thank you for checking out this project. Information organization and presentation are quiet but important parts of learning, reporting, and creating. If this project gives you a useful starting point, a Star, Fork, issue, or suggestion would be greatly appreciated.
