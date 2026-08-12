@@ -1,36 +1,45 @@
+from typing import TypedDict
+
 from langchain_core.prompts import ChatPromptTemplate
 
-import load_env
-import os
-from typing import TypedDict
-from ollama_llm import llm
+from llm import llm
+from utils import json_parser
+
+
 class State(TypedDict):
-    require:str
+    require: str
+    kw_list: list[str]
+    search_result: dict[str, str]
 
-    kw_list:list[str]
 
-    search_result:dict[str,str]
+generate_query_kw_list_template = ChatPromptTemplate.from_template(
+    """# Background
+You are a research editor in a newsroom. The newsroom needs to generate news-search keywords from a short user brief.
 
-generate_query_kw_list_template = ChatPromptTemplate.from_template("""# 背景
-你是新闻编辑部的一员，你们编辑部需要根据用户的一句话需求来生成新闻稿
-# 你的角色
-你是负责搜索资料的成员，你需要根据用户提供的需求，生成查询关键字
-# 你要做什么
-你需要根据 `用户需求`，拟定多个搜索引擎用的查询关键字
-# 用户需求
+# Role
+You are responsible for collecting source material. Based on the user requirement, generate multiple search-engine query keywords.
+
+# User requirement
 {require}
-# 输出格式
-请输出 json 格式的数据，数据结构如下:
+
+# Output format
+Return only a fenced JSON array:
 
 ```json
 [
-    "查询关键字1",
-    "查询关键字2",
-    "查询关键字3",
-    ...
+  "query keyword",
+  "query keyword",
+  "query keyword"
 ]
 ```
+"""
+)
 
-输出必须以 "```json" 开头，以 "```" 结尾
-""")
 generate_kw_list_chain = generate_query_kw_list_template | llm | json_parser
+
+
+if __name__ == '__main__':
+    result = generate_kw_list_chain.invoke(
+        {'require': 'Generate three Chinese search keywords about AI industry investment trends.'}
+    )
+    print(result)

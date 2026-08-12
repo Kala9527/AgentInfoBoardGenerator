@@ -1,21 +1,20 @@
-#通常是工具函数
-# hel
+import json
 import re
 
 from langchain_core.messages import AIMessage
 from langchain_core.runnables import chain
 
-json_parse_regex = re.compile('```json(.+)```', re.DOTALL)
-html_parse_regex = re.compile('```html(.+)```', re.DOTALL)
+json_parse_regex = re.compile(r'```json\s*(.+?)\s*```', re.DOTALL)
+html_parse_regex = re.compile(r'```html\s*(.+?)\s*```', re.DOTALL)
 
-def parse_json(json_str):
+
+def parse_json(json_str: str):
     match = json_parse_regex.search(json_str)
-    # 只有 match 存在才解析 json 数据
-    if match:
-        json_str = match.groups()[0]
-    else:
-        print(json_str)
-        raise Exception('格式错误')
+    if not match:
+        raise ValueError('Expected a fenced json code block in the model response.')
+
+    return json.loads(match.group(1))
+
 
 @chain
 def json_parser(ai_message: AIMessage):
