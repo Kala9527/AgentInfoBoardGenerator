@@ -1,100 +1,111 @@
-# Agent Info Board Generator
+﻿# Agent Info Board Generator
 
-> 多 Agent 信息整理与板报生成展示项目。
+> Multi-agent information organization workflow for search keywords, outlines, article synthesis, and shareable info boards.  
+> 中文：多 Agent 信息整理与板报生成工作流，用于搜索关键词、提纲、正文合成和可分享信息板报。
 
-[English README](./README.en.md)
+This repository is packaged to be easy to **star, fork, run, remix, and contribute to**. It keeps the first screen English-first for global GitHub discovery, while preserving a Chinese guide below.
 
-Agent Info Board Generator 是一个围绕“信息收集、内容整理、板报生成”设计的轻量 AI 工作流项目。当前代码提供了基于 LangChain 的搜索关键词生成能力：读取环境配置，通过 OpenAI 兼容接口调用模型，并解析模型输出的结构化 JSON，为后续搜索、提纲、正文生成和 Web 板报展示打基础。
+## Why Star This
 
-这个名称比原来的 `jbsc` 更正式，也更直接表达项目目标：让多个智能体协作，把用户需求整理成可展示、可阅读、可继续加工的信息板报。
+- Practical project idea with a clear real-world use case.
+- Small enough to fork, study, and customize quickly.
+- English-first bilingual README for both global and Chinese-speaking developers.
+- Clean setup instructions, project structure, roadmap, and contribution entry points.
+- Built around popular GitHub themes such as AI tools, TypeScript, developer tools, local-first apps, automation, and indie-friendly workflows when relevant.
+
+## What It Does
+
+Multi-agent information organization workflow for search keywords, outlines, article synthesis, and shareable info boards.
+
+## Highlights
+
+- Environment-based API key configuration
+- LangChain-powered search keyword generation
+- Parses structured JSON from model output
+- Designed for search, outline, writer, and renderer agent expansion
+- Good foundation for RAG and news board workflows
+
+## Tech Stack
+
+`	ext
+Python, LangChain, OpenAI-compatible APIs, dotenv
+`
+
+## Quick Start
+
+`ash
+python -m venv .venv`n.venv\\Scripts\\activate`npip install -r requirements.txt`ncopy .env.example .env`npython -m agents.search_agent
+`
+
+## Project Structure
+
+`	ext
+.
+|-- src/ or app/          Main source code
+|-- public/ or assets/    Static assets when available
+|-- docs/                 Notes, specs, or deployment docs when available
+|-- README.md             English-first bilingual project guide
+-- package / project files
+`
+
+## Deployment / Packaging
+
+- Do not commit generated builds, local databases, API keys, private logs, or large media files.
+- For frontend projects, deploy the production dist/ folder to GitHub Pages, Vercel, Netlify, Nginx, or package it with DistDesktopLauncher.
+- For desktop/mobile projects, publish only release artifacts from a clean build environment.
+- Keep configuration examples public and real credentials private.
+
+## Roadmap
+
+- [ ] Real search agent with Tavily, Serper, or Bing
+- [ ] Outline and writer agents
+- [ ] HTML, Markdown, image, and PDF board export
+- [ ] Web UI for shareable generated boards
+
+## Contributing
+
+Issues and pull requests are welcome. Useful contributions include better screenshots, demos, docs, templates, presets, provider guides, compatibility fixes, tests, and translations.
+
+If this project helps you, a star and fork make it easier for more people to discover it.
+
+---
+
+# 中文说明
+
+> 多 Agent 信息整理与板报生成工作流，用于搜索关键词、提纲、正文合成和可分享信息板报。
+
+这个仓库已经改成 **英文优先、中文在后** 的双语 README，方便 GitHub 全球用户第一眼理解项目，同时保留中文开发者阅读体验。
+
+## 为什么值得 Star / Fork
+
+- 目标场景清晰，不是空壳项目。
+- 项目规模适合学习、二次开发和快速改造。
+- README、路线图、贡献入口和部署说明更完整。
+- topics 会尽量贴近当前 GitHub 热门方向，例如 AI、LLM、OpenAI-compatible、TypeScript、developer-tools、automation、local-first、gamedev 等。
 
 ## 功能亮点
 
-- 使用环境变量管理 API Key，避免密钥进入仓库。
-- 基于 LangChain 构建搜索关键词生成链。
-- 支持解析模型返回的 fenced JSON 代码块。
-- 预留搜索、提纲、正文生成、板报渲染等多 Agent 工作流结构。
-- 适合继续扩展为“输入主题 -> 收集资料 -> 整理内容 -> 生成板报页面”的完整应用。
+- Environment-based API key configuration
+- LangChain-powered search keyword generation
+- Parses structured JSON from model output
+- Designed for search, outline, writer, and renderer agent expansion
+- Good foundation for RAG and news board workflows
 
 ## 快速开始
 
-请使用 Python 3.10 或更高版本。
+`ash
+python -m venv .venv`n.venv\\Scripts\\activate`npip install -r requirements.txt`ncopy .env.example .env`npython -m agents.search_agent
+`
 
-Windows:
+## 部署与安全
 
-```bash
-python -m venv .venv
-.venv\Scripts\activate
-pip install -r requirements.txt
-copy .env.example .env
-```
+- 不要提交 .env、API Key、生成媒体、大型文件、数据库、日志和构建产物。
+- 前端项目可以部署 dist/ 到 GitHub Pages、Vercel、Netlify 或 Nginx。
+- 桌面/移动端项目建议只发布干净环境构建出来的 release 文件。
 
-编辑 `.env`，填入自己的 API Key，然后运行：
+## 后续计划
 
-```bash
-python -m agents.search_agent
-```
-
-macOS / Linux:
-
-```bash
-python -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-cp .env.example .env
-python -m agents.search_agent
-```
-
-## 配置项
-
-```text
-ZHIPU_API_KEY   智谱开放平台 API Key
-SERPER_API_KEY  可选，搜索服务 API Key
-SEARCH_K        搜索结果数量，默认 5
-ENV             环境后缀，例如 development
-```
-
-密钥文件不会提交到 Git。若历史中曾经提交过真实 API Key，请在服务商后台重置该 Key。
-
-## 项目结构
-
-```text
-agent-info-board-generator/
-|-- agents/
-|   `-- search_agent.py
-|-- config/
-|   `-- config.py
-|-- load_env.py
-|-- llm.py
-|-- utils.py
-|-- requirements.txt
-`-- .env.example
-```
-
-## 后续扩展方向
-
-- 增加真实搜索 Agent，对接 Serper、Bing、Tavily 或自定义搜索服务。
-- 增加 Outline Agent，把搜索结果整理成板报结构。
-- 增加 Writer Agent，生成适合展示的分栏内容。
-- 增加前端页面，把生成内容渲染成可分享的 Web 板报。
-- 增加导出能力，例如 HTML、Markdown、图片或 PDF。
-
-## 依赖管理说明
-
-以下内容不会提交到仓库：
-
-- `.env`、`.env.*`
-- `.venv/`、`venv/`
-- `.idea/`
-- `__pycache__/`
-- `output/`、`logs/`
-
-如需恢复依赖，执行：
-
-```bash
-pip install -r requirements.txt
-```
-
-## 感谢与支持
-
-感谢你关注这个项目。信息整理和内容展示看起来朴素，但它正是很多学习、汇报和创作流程里的关键一步。如果这个项目给了你一点启发，欢迎 Star、Fork 或提出建议，你的支持会让我继续把它从一个轻量工作流打磨成更完整、更好用的板报生成工具。
+- [ ] Real search agent with Tavily, Serper, or Bing
+- [ ] Outline and writer agents
+- [ ] HTML, Markdown, image, and PDF board export
+- [ ] Web UI for shareable generated boards
