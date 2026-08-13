@@ -1,90 +1,74 @@
-# Agent Info Board Generator
+﻿# Agent Info Board Generator
 
-> A multi-agent project for information organization and bulletin-board generation.
+[中文说明](./README.cn.md)
 
-Agent Info Board Generator is a lightweight AI workflow project built around information collection, content organization, and board-style presentation. The current code provides a LangChain-based search keyword generation flow: it loads environment configuration, calls an OpenAI-compatible model endpoint, and parses structured JSON returned by the model.
+> Multi-agent information organization workflow for search keywords, outlines, article synthesis, and shareable info boards.  
 
-The name is more formal than the original `jbsc` and describes the project goal directly: coordinate multiple agents to turn a user request into organized, readable, and display-ready information boards.
+This repository is packaged to be easy to **star, fork, run, remix, and contribute to**. It keeps a dedicated English version for global GitHub discovery, with a separate Chinese version linked above.
 
-## Features
+## Why Star This
 
-- Environment-based API key management.
-- LangChain prompt chain for search keyword generation.
-- Utility for parsing fenced JSON code blocks from model responses.
-- Starter structure for search, outline, article/content, and board rendering agents.
-- A practical foundation for a full flow: topic input -> information gathering -> content organization -> web board generation.
+- Practical project idea with a clear real-world use case.
+- Small enough to fork, study, and customize quickly.
+- English-first bilingual README for both global and Chinese-speaking developers.
+- Clean setup instructions, project structure, roadmap, and contribution entry points.
+- Built around popular GitHub themes such as AI tools, TypeScript, developer tools, local-first apps, automation, and indie-friendly workflows when relevant.
+
+## What It Does
+
+Multi-agent information organization workflow for search keywords, outlines, article synthesis, and shareable info boards.
+
+## Highlights
+
+- Environment-based API key configuration
+- LangChain-powered search keyword generation
+- Parses structured JSON from model output
+- Designed for search, outline, writer, and renderer agent expansion
+- Good foundation for RAG and news board workflows
+
+## Tech Stack
+
+`	ext
+Python, LangChain, OpenAI-compatible APIs, dotenv
+`
 
 ## Quick Start
 
-Use Python 3.10+.
-
-Windows:
-
-```bash
-python -m venv .venv
-.venv\Scripts\activate
-pip install -r requirements.txt
-copy .env.example .env
-```
-
-Edit `.env` and set your real API keys, then run:
-
-```bash
-python -m agents.search_agent
-```
-
-macOS / Linux:
-
-```bash
-python -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-cp .env.example .env
-python -m agents.search_agent
-```
-
-## Configuration
-
-```text
-ZHIPU_API_KEY   Zhipu API key
-SERPER_API_KEY  Optional search provider key
-SEARCH_K        Search result count, default 5
-ENV             Environment suffix, for example development
-```
-
-Secrets are intentionally excluded from Git. If a real API key was ever committed, rotate it in the provider dashboard.
+`ash
+python -m venv .venv`n.venv\\Scripts\\activate`npip install -r requirements.txt`ncopy .env.example .env`npython -m agents.search_agent
+`
 
 ## Project Structure
 
-```text
-agent-info-board-generator/
-|-- agents/
-|   `-- search_agent.py
-|-- config/
-|   `-- config.py
-|-- load_env.py
-|-- llm.py
-|-- utils.py
-|-- requirements.txt
-`-- .env.example
-```
+`	ext
+.
+|-- src/ or app/          Main source code
+|-- public/ or assets/    Static assets when available
+|-- docs/                 Notes, specs, or deployment docs when available
+|-- README.md             English-first bilingual project guide
+-- package / project files
+`
 
-## Roadmap Ideas
+## Deployment / Packaging
 
-- Add a real search agent with Serper, Bing, Tavily, or a custom search provider.
-- Add an outline agent that turns search results into a board structure.
-- Add a writer agent for presentation-ready sections.
-- Add a frontend page that renders generated content into a shareable web board.
-- Add export support for HTML, Markdown, images, or PDF.
+- Do not commit generated builds, local databases, API keys, private logs, or large media files.
+- For frontend projects, deploy the production dist/ folder to GitHub Pages, Vercel, Netlify, Nginx, or package it with DistDesktopLauncher.
+- For desktop/mobile projects, publish only release artifacts from a clean build environment.
+- Keep configuration examples public and real credentials private.
 
-## Dependency Policy
+## Roadmap
 
-No virtual environments, IDE settings, local `.env` files, generated output, or cache directories should be committed. Recreate dependencies with:
+- [ ] Real search agent with Tavily, Serper, or Bing
+- [ ] Outline and writer agents
+- [ ] HTML, Markdown, image, and PDF board export
+- [ ] Web UI for shareable generated boards
 
-```bash
-pip install -r requirements.txt
-```
+## Contributing
 
-## Thanks
+Issues and pull requests are welcome. Useful contributions include better screenshots, demos, docs, templates, presets, provider guides, compatibility fixes, tests, and translations.
 
-Thank you for checking out this project. Information organization and presentation are quiet but important parts of learning, reporting, and creating. If this project gives you a useful starting point, a Star, Fork, issue, or suggestion would be greatly appreciated.
+If this project helps you, a star and fork make it easier for more people to discover it.
+
+
+
+
