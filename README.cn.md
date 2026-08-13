@@ -1,40 +1,58 @@
-﻿# 中文说明
+# 多 Agent 信息板报生成器
 
-> 多 Agent 信息整理与板报生成工作流，用于搜索关键词、提纲、正文合成和可分享信息板报。
+[English README](./README.en.md)
 
-这个仓库已经改成 **英文优先、中文在后** 的双语 README，方便 GitHub 全球用户第一眼理解项目，同时保留中文开发者阅读体验。
+> 基于 LangChain 的多 Agent 工作流起点，可把主题转成关键词、提纲、正文草稿和可分享板报。
+
+![python](https://img.shields.io/badge/python-111827?style=flat-square) ![langchain](https://img.shields.io/badge/langchain-111827?style=flat-square) ![llm](https://img.shields.io/badge/llm-111827?style=flat-square) ![agent-workflow](https://img.shields.io/badge/agent-workflow-111827?style=flat-square) ![content-automation](https://img.shields.io/badge/content-automation-111827?style=flat-square)
+
+## 项目展示
+
+![多 Agent 信息板报生成器 展示图](./docs/images/github-showcase.png)
 
 ## 为什么值得 Star / Fork
 
-- 目标场景清晰，不是空壳项目。
-- 项目规模适合学习、二次开发和快速改造。
-- README、路线图、贡献入口和部署说明更完整。
-- topics 会尽量贴近当前 GitHub 热门方向，例如 AI、LLM、OpenAI-compatible、TypeScript、developer-tools、automation、local-first、gamedev 等。
+- 项目目标清晰，不是空壳仓库。
+- README 首屏有真实截图或基于真实功能的产品展示图，访客能快速理解项目。
+- 代码规模适合学习、二次开发和快速改造。
+- 同时维护英文与中文说明，方便 GitHub 全球用户和中文开发者阅读。
 
 ## 功能亮点
 
-- Environment-based API key configuration
-- LangChain-powered search keyword generation
-- Parses structured JSON from model output
-- Designed for search, outline, writer, and renderer agent expansion
-- Good foundation for RAG and news board workflows
+- python
+- langchain
+- llm
+- agent workflow
+- content automation
+- 保持本地优先：密钥、生成文件、构建产物和本机缓存不进入 Git。
 
 ## 快速开始
 
-`ash
-python -m venv .venv`n.venv\\Scripts\\activate`npip install -r requirements.txt`ncopy .env.example .env`npython -m agents.search_agent
-`
+```bash
+python -m venv .venv
+.venv\Scripts\activate
+pip install -r requirements.txt
+copy .env.example .env
+python -m agents.search_agent
+```
 
-## 部署与安全
+## 项目结构
 
-- 不要提交 .env、API Key、生成媒体、大型文件、数据库、日志和构建产物。
-- 前端项目可以部署 dist/ 到 GitHub Pages、Vercel、Netlify 或 Nginx。
-- 桌面/移动端项目建议只发布干净环境构建出来的 release 文件。
+```text
+.
+|-- src/ 或 app/          主要源码
+|-- public/ 或 assets/    静态资源
+|-- docs/                 截图、说明或部署文档
+|-- README.md             GitHub 首屏入口
+|-- README.en.md          英文说明
+`-- README.cn.md          中文说明
+```
 
 ## 后续计划
 
-- [ ] Real search agent with Tavily, Serper, or Bing
-- [ ] Outline and writer agents
-- [ ] HTML, Markdown, image, and PDF board export
-- [ ] Web UI for shareable generated boards
+- [ ] 补充更多真实使用示例和截图。
+- [ ] 为核心工作流增加测试或 smoke check。
+- [ ] 在适合的项目中发布干净的 release 成品。
+- [ ] 持续优化文档，让新贡献者更容易上手。
 
+欢迎提交 Issue 和 PR。如果这个项目帮到了你，Star 和 Fork 能让更多人更容易发现它。
